@@ -114,6 +114,11 @@ export default {
         center: this.centers,
         zoom: 13
       })
+      let marker = new window.google.maps.Marker({
+        position: { lat: -34.397, lng: 150.644 },
+        map: this.googleMap
+      })
+      marker.setMap(this.googleMap)
     })
   }
 }
@@ -124,7 +129,7 @@ export default {
     align-self: center;
     width: 99%;
     min-width: 320px;
-    height: 230px;
+    height: 530px;
     min-height: 230px;
     background: #d8d8d8;
   }
