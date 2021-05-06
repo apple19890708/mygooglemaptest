@@ -43,7 +43,7 @@
 </style>
 
 <script>
-import cityName from '../assets/cityName.json'
+import cityName from '../assets/cityName.json' // 城市與鄉鎮資料
 import axios from 'axios'
 const api = 'https://raw.githubusercontent.com/kiang/pharmacies/master/json/points.json'
 import L from 'leaflet'
@@ -85,10 +85,10 @@ export default {
   computed: {
     pharmacies() {
       return this.baseData.filter((item) => {
-        if(!this.select.area) {
+        if(!this.select.area) {   // 如果還沒有地區 就先撈城市
           return item.properties.county === this.select.city;
         }
-        return item.properties.town === this.select.area;
+        return (item.properties.town === this.select.area && item.properties.county === this.select.city); // 有地區 就必須兩個條件都符合
       })
     }
   },
@@ -96,6 +96,9 @@ export default {
     pharmacies(value) {
       this.updateMap();
     },
+    'select.city'() {
+      this.select.area = '';  // 也可以在input 用 @change做動作
+    }
   },
   mounted() {
     openStreetMap = L.map('map', {
