@@ -3,18 +3,8 @@
     <h1>{{ msg }}</h1>
     <h2>Essential Links</h2>
     <div>
-      <input type="text" ref="site" v-model="site">
+      <input style="margin-bottom:10px" type="text" ref="site" v-model="site">
     </div>
-    <ul>
-      <li>
-        <div
-          style="cursor:pointer;color: cadetblue;font-weight: 600;"
-          @click="() => { $router.push('/maskGoogleMap') }"
-        >
-          Mask Map
-        </div>
-      </li>
-    </ul>
     <div
       class="MapInfo-map"
       id="map"
@@ -35,16 +25,21 @@
         </ul>
       </div>
     </div>
-    
+    <!-- 引入tab頁籤 -->
+    <demo></demo>
   </div>
 </template>
 
 <script>
 import { Loader } from '@googlemaps/js-api-loader'
+import Demo from '../components/tabComponent/Demo'
 import axios from 'axios'
 
 export default {
   name: 'HelloWorld',
+  components: {
+    Demo
+  },
   data () {
     return {
       site: '',
